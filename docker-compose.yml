@@ -1,8 +1,6 @@
 services:
   web:
     image: parentnode/php-8.2-apache:latest
-    ports:
-      - '8080:80'
     volumes:
       - ${PROJECT_PATH}/apache:/etc/apache2/sites-enabled
       - ${PROJECT_PATH}:/srv/sites/parentnode/janitor_parentnode_dk
@@ -13,30 +11,19 @@ services:
       - redis
     extra_hosts:
         - 'janitor.local:127.0.0.1'
-    networks:
-      - dev-env
+    network_mode: host
   mariadb:
     image: mariadb:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: 'not_so_secret'
-      MYSQL_USER: 'root'
-      MYSQL_PASSWORD: 'less_secret'
-      MYSQL_DATABASE: 'janitor_parentnode_dk'
+    command: '--skip-grant-tables'
     volumes:
       - ./db:/var/lib/mysql
     ports:
-      - 3306:3306
-    networks:
-      - dev-env
+      - '127.0.0.1:3306:3306'
   redis:
     image: redis:latest
     restart: always
     ports: 
-      - 6379:6379
-    networks:
-      - dev-env
-volumes:
-  mysqldata: {}
-networks:
-  dev-env: {}
+      - '127.0.0.1:6379:6379'

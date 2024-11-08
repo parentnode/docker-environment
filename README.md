@@ -9,10 +9,15 @@ This will typically be deployed in a custom project version, using the docker-co
 
 To run this container successfully, follow these steps:
 
-1: Clone the janitor_parentnode_dk project from Github (https://github.com/parentnode/janitor_parentnode_dk) to your local computer.
+
+1: Enable host networking in your Docker.desktop
+You can find this option under Settings -> Resources -> Network
 
 
-2: Then use the following command to start container stack:
+2: Clone the janitor_parentnode_dk project from Github (https://github.com/parentnode/janitor_parentnode_dk) to your local computer.
+
+
+3: Then use the following command to start container stack:
 
 PROJECT_PATH=/#PATH-TO-CLONED-REPOS#/janitor_parentnode_dk docker compose up -d
 
@@ -20,7 +25,7 @@ Fx, if you cloned the repos to /Users/martin/Sites/janitor_parentnode_dk:
 PROJECT_PATH=/Users/martin/Sites/janitor_parentnode_dk docker compose up -d
 
 
-3: Go to http://janitor.local:8080/janitor/admin/setup in your browser to start the Janitor setup.
+4: Go to http://janitor.local/janitor/admin/setup in your browser to start the Janitor setup.
 
 
 With minor adaptations you can make it run any parentNode webstack based project.
